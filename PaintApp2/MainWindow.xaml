@@ -1,0 +1,73 @@
+﻿<Window x:Class="PaintApp2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PaintApp2"
+        mc:Ignorable="d"
+        Title="Paint" Height="700" Width="1200" MinWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Toolbar -->
+        <Border Grid.Row="0" BorderBrush="LightGray" BorderThickness="0,0,0,1" Background="WhiteSmoke">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                <StackPanel Orientation="Horizontal" Margin="5" Height="60">
+                    <!-- Çizim için gerekli araçlar -->
+                    <Label Content="Araçlar:" VerticalAlignment="Center" Margin="5,0"/>
+                    
+                    <Button Name="btnPen" Content="Kalem" Width="60" Height="30" Margin="2" Click="BtnPen_Click"/>
+                    <Button Name="btnRectangle" Content="Dikdörtgen" Width="80" Height="30" Margin="2" Click="BtnRectangle_Click"/>
+                    <Button Name="btnCircle" Content="Daire" Width="60" Height="30" Margin="2" Click="BtnCircle_Click"/>
+                    <Button Name="btnText" Content="Metin" Width="60" Height="30" Margin="2" Click="BtnText_Click"/>
+                    
+                    <Separator Margin="10,0" VerticalAlignment="Center" Height="30"/>
+                    
+                    <!-- Geri Al / İleri Al -->
+                    <Button Name="btnUndo" Content="Geri Al" Width="70" Height="30" Margin="2" Click="BtnUndo_Click"/>
+                    <Button Name="btnRedo" Content="İleri Al" Width="70" Height="30" Margin="2" Click="BtnRedo_Click"/>
+                    
+                    <Separator Margin="10,0" VerticalAlignment="Center" Height="30"/>
+                    
+                    <!-- Dosya sistemine kaydetme işlemi -->
+                    <Button Name="btnSave" Content="Kaydet" Width="70" Height="30" Margin="2" Click="BtnSave_Click"/>
+                    
+                    <Separator Margin="10,0" VerticalAlignment="Center" Height="30"/>
+                    
+                    <!--  6 renkten oluşan renk paleti -->
+                    <Label Content="Renkler:" VerticalAlignment="Center" Margin="5,0"/>
+                    <Border BorderBrush="Black" BorderThickness="1" Margin="2" Width="30" Height="30" 
+                            Background="Black" MouseLeftButtonDown="Color_Click" Tag="Black" VerticalAlignment="Center" Cursor="Hand"/>
+                    <Border BorderBrush="Black" BorderThickness="1" Margin="2" Width="30" Height="30" 
+                            Background="Red" MouseLeftButtonDown="Color_Click" Tag="Red" VerticalAlignment="Center" Cursor="Hand"/>
+                    <Border BorderBrush="Black" BorderThickness="1" Margin="2" Width="30" Height="30" 
+                            Background="Blue" MouseLeftButtonDown="Color_Click" Tag="Blue" VerticalAlignment="Center" Cursor="Hand"/>
+                    <Border BorderBrush="Black" BorderThickness="1" Margin="2" Width="30" Height="30" 
+                            Background="Green" MouseLeftButtonDown="Color_Click" Tag="Green" VerticalAlignment="Center" Cursor="Hand"/>
+                    <Border BorderBrush="Black" BorderThickness="1" Margin="2" Width="30" Height="30" 
+                            Background="Yellow" MouseLeftButtonDown="Color_Click" Tag="Yellow" VerticalAlignment="Center" Cursor="Hand"/>
+                    <Border BorderBrush="Black" BorderThickness="1" Margin="2" Width="30" Height="30" 
+                            Background="Purple" MouseLeftButtonDown="Color_Click" Tag="Purple" VerticalAlignment="Center" Cursor="Hand"/>
+                    
+                    <!-- Seçili rengin kullanımının gösterilmesi -->
+                    <Label Content="Seçili:" VerticalAlignment="Center" Margin="10,0,5,0"/>
+                    <Border Name="selectedColorBorder" BorderBrush="Black" BorderThickness="2" 
+                            Margin="2" Width="40" Height="30" Background="Black" VerticalAlignment="Center"/>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+        
+        <!-- Tuval -->
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <Canvas Name="drawingCanvas" 
+                    Background="White" 
+                    MouseLeftButtonDown="Canvas_MouseLeftButtonDown"
+                    MouseMove="Canvas_MouseMove"
+                    MouseLeftButtonUp="Canvas_MouseLeftButtonUp"
+                    Width="800" Height="600"/>
+        </ScrollViewer>
+    </Grid>
+</Window>
