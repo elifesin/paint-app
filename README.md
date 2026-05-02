@@ -13,3 +13,15 @@ The application's architecture is deeply rooted in modern software design patter
 
 -Undo/Redo System: A robust action history manager allowing users to seamlessly undo mistakes or redo actions.
 
+
+** DESIGN PATTERNS **
+
+Main logic by using behavorial design patterns is improve extendiility, reduce repeated code and seperate concerns.
+
+*1- Command Pattern*: This pattern is mainly used for undo/redo functionality. It sees every action as an object. 
+-ICommand: The base interface defining Execute() and Undo() methods.
+
+-DrawingCommandManager: Manages the undoStack and redoStack, coordinating the
+execution and reversal of operations.
+
+-Concrete Commands: Classes like AddShapeCommand, AddTextCommand, and PenDrawingCommand handle the specific logic for adding and removing elements from the WPF Canvas.
